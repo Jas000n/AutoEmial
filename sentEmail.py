@@ -15,29 +15,29 @@ def sentforecast(city):
 
     if city=="测试":
         city ="北京"
-        reciver_dic = {"北京": ["ysyysy2001@126.com"],
-                       "沈阳": ["ysyysy2001@126.com"]}
+        reciver_dic = {"北京": [""],
+                       "沈阳": [""]}
 
-        mm_to_dic = {"北京": "<ysyysy2001@126.com>",
-                     "沈阳": "<ysyysy2001@126.com>"}
+        mm_to_dic = {"北京": "<>",
+                     "沈阳": "<>"}
     else:
-        reciver_dic = {"北京": ["993811659@qq.com", "ysyysy2001@126.com", "1374405852@qq.com"],
-                       "沈阳": ["ysyysy2001@126.com", "cloudmirrorgo@163.com", "1471127927@qq.com", "959288458@qq.com"]}
+        reciver_dic = {"北京": ["", "", ""],
+                       "沈阳": ["", "", "", ""]}
 
-        mm_to_dic = {"北京": "<993811659@qq.com>,<ysyysy2001@126.com>,<1374405852@qq.com>",
-                     "沈阳": "<ysyysy2001@126.com>,<cloudmirrorgo@163.com>,<1471127927@qq.com>,<959288458@qq.com>"}
+        mm_to_dic = {"北京": "<>,<>,<>",
+                     "沈阳": "<>,<>,<>,<>"}
 
     weatherclass = getInformation()
     weathertext = weatherclass.text(city)
     # SMTP服务器,这里使用163邮箱
     mail_host = "smtp.163.com"
     # 发件人邮箱
-    mail_sender = "ysyysy2019@163.com"
+    mail_sender = ""
     # 邮箱授权码
-    mail_license = "BEPQRQWLAEVMRMPX"
+    mail_license = ""
     # 收件人邮箱，可以为多个收件人
 
-    #mail_receivers = ["ysyysy2001@126.com", "cloudmirrorgo@163.com", "1471127927@qq.com", "959288458@qq.com"]
+    #mail_receivers = ["", "", "", ""]
     mail_receivers = reciver_dic.get(city)
     #print(type(mail_receivers))
     mm = MIMEMultipart('related')
@@ -46,10 +46,10 @@ def sentforecast(city):
 
     subject_content = """明日天气提醒"""
     # 设置发送者,注意严格遵守格式,里面邮箱为发件人邮箱
-    mm["From"] = "小姚的天气提醒bot<ysyysy2019@163.com>"
+    mm["From"] = "小姚的天气提醒bot<>"
     # 设置接受者,注意严格遵守格式,里面邮箱为接受者邮箱
-    # mm["To"] = "<ysyysy2001@126.com>,<cloudmirrorgo@163.com>,<1471127927@qq.com>,<959288458@qq.com>"
-    # mm["To"] = "<ysyysy2001@126.com>,<1079481391@qq.com>"
+    # mm["To"] = "<>,<>,<>,<>"
+    # mm["To"] = "<>,<1079481391@qq.com>"
     mm["To"] = mm_to_dic.get(city)
     # print(type(mm["To"]))
     # 设置邮件主题
