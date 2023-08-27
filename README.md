@@ -1,3 +1,3 @@
 # AutoEmial
-automatically send email of weather report some cute cat image will be randomly attached
+automatically send email of weather report & some cute cat images will be randomly attached
 ![](example.jpg)
